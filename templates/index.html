@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Handjet:wght@300&family=REM:wght@200&family=Raleway:wght@200&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="App.css">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>House Price Prediction</title>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+        const dropdown = document.getElementById('dropdown');
+
+        // Fetch the JSON data
+        fetch('/static/columns.json')
+        .then((response) => response.json())
+        .then((data) => {
+        // Access the column names from the JSON data
+        const columns = data.data_columns;
+
+        // Populate the drop-down menu with the column names
+        columns.forEach((column) => {
+        const option = document.createElement('option');
+        option.textContent = column;
+        dropdown.appendChild(option);
+        });
+        })
+        .catch((error) => {
+        console.error('Error fetching JSON data:', error);
+        });
+        });
+
+    </script>
+</head>
+<body >
+    <style>
+        body {
+            font-family: 'REM', sans-serif;
+            font-family: 'Handjet', cursive;
+font-family: 'REM', sans-serif;
+        }
+        </style>
+    <div class="split left">
+        <div class="centered">
+    <h1 class="title-1">Find Your</h1>
+    <h3 class="title-2">House Price Prediction</h3>
+    <span>enter required details to estimate your house price in bengaluru city.</span>
+    <form method="POST" action="/">
+        <input class="input-1" type="text" name="area" placeholder="Area in sqft ">
+        <h1>BHKs</h1>
+        <div class="switch-field">
+            <input type="radio" id="radio-bhk-1" name="uiBHK" value="1"/>
+            <label for="radio-bhk-1">1</label>
+            <input type="radio" id="radio-bhk-2" name="uiBHK" value="2" checked/>
+            <label for="radio-bhk-2">2</label>
+            <input type="radio" id="radio-bhk-3" name="uiBHK" value="3"/>
+            <label for="radio-bhk-3">3</label>
+            <input type="radio" id="radio-bhk-4" name="uiBHK" value="4"/>
+            <label for="radio-bhk-4">4</label>
+            <input type="radio" id="radio-bhk-5" name="uiBHK" value="5"/>
+            <label for="radio-bhk-5">5</label>
+        </div>
+        <h1>bathroom</h1>
+       
+        <div class="switch-field">
+            <input type="radio" id="radio-bath-1" name="uiBathrooms" value="1"/>
+            <label for="radio-bath-1">1</label>
+            <input type="radio" id="radio-bath-2" name="uiBathrooms" value="2" checked/>
+            <label for="radio-bath-2">2</label>
+            <input type="radio" id="radio-bath-3" name="uiBathrooms" value="3"/>
+            <label for="radio-bath-3">3</label>
+            <input type="radio" id="radio-bath-4" name="uiBathrooms" value="4"/>
+            <label for="radio-bath-4">4</label>
+            <input type="radio" id="radio-bath-5" name="uiBathrooms" value="5"/>
+            <label for="radio-bath-5">5</label>
+        </div>
+        
+        <select id="dropdown" name="iloc"></select>
+    
+        <input type="submit">
+    </form> </div> </div>
+    <div class="split right">
+        <div class="centered">
+    {% if your_price %}
+        <h1>Estimated Price: <i>{{your_price}}</i></h1>
+    {% endif %}
+    <img src="pic.png">
+</div>
+</div>
+</body>
+</html>
