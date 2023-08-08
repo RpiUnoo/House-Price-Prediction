@@ -29,10 +29,10 @@ def pred_score(location,sqft,bath,bhk):
 
     x = [element.lower() for element in x]
 
-    print(x)
+    #print(x)
     loc_index = x.index(location)
     #print(loc_index1)
-    print(loc_index)
+    #print(loc_index)
     a = np.zeros((244))
     a[0] = sqft
     a[1] = bath
